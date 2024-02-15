@@ -11,12 +11,14 @@ pipeline {
     }
 	
     stages{
-	
+		
+		/*
         stage("Checkout from SCM"){
                 steps {
                     git branch: 'main', credentialsId: 'github', url: 'https://github.com/traipat9k/node-hello-world.git'
                 }
         }
+		*/
 		
         stage("Build Image"){
             steps {
@@ -30,7 +32,6 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
 				sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
 				sh 'docker push ${IMAGE_NAME}:${IMAGE_TAG}'
-				;sh 'docker push ${IMAGE_NAME}:latest'
 				}
             }
        }
