@@ -8,6 +8,7 @@ pipeline {
             DOCKER_PASS = 'xxxx'
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+			JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
     }
 	
     stages{
@@ -50,6 +51,14 @@ pipeline {
                     sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
                }
           }
+       }
+	   
+	    stage("Trigger CD Pipeline") {
+            steps {
+                script {
+                    sh "curl -v -k --user admin:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' '192.168.40.140:8080/job/Node101-CD/buildWithParameters?token=gitops-token'"
+                }
+            }
        }
     }
 }
