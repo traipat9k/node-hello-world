@@ -42,12 +42,12 @@ pipeline {
             
             steps {
                 
-                withSonarQubeEnv('sonarqube-server') {
+                withSonarQubeEnv('sonarqube-servers') {
                     sh "${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=test-nodejs \
 					-Dsonar.projectName=test-nodejs \
 					-Dsonar.sources=. \
 					-Dsonar.sourceEncoding=UTF-8 \
-					-Dsonar.scm.disabled=true \
+					-Dsonar.scm.disabled=true
 					"
                 }
             }
