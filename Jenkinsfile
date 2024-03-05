@@ -35,14 +35,17 @@ pipeline {
         //}
 		
 		stage("SonarQube analysis") {
-			steps {
-				script {
-					def scannerHome = tool 'sonarqube-scanner';
-					withSonarQubeEnv('sonarqube-server') {
-					sh "${tool("sonarqube-scanner")}/bin/sonar-scanner -Dsonar.projectKey=test-node-js -Dsonar.projectName=reactapp -Dsonar.sources=."
-					}
-				}
-			}
+
+			environment {
+                SCANNER_HOME = tool 'sonarqube-scanner';    
+            }
+            
+            steps {
+                
+                withSonarQubeEnv('SonarQube') {
+                    sh "${SCANNER_HOME}/bin/sonar-scanner"
+                }
+            }
 		}
 		
         stage("Build Image"){
