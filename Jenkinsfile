@@ -27,14 +27,12 @@ pipeline {
 
         }
 		
-		/*
-		stage("Test Application"){
-            steps {
-				sh 'npm test'
-            }
-
-        }
-		*/
+		//
+		//stage("Test Application"){
+        //    steps {
+		//		sh 'npm test'
+        //   }
+        //}
 		
 		stage('SonarQube analysis') {
 			steps {
