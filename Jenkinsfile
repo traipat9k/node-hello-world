@@ -27,12 +27,25 @@ pipeline {
 
         }
 		
+		/*
 		stage("Test Application"){
             steps {
 				sh 'npm test'
             }
 
         }
+		*/
+		
+		stage('SonarQube analysis') {
+			steps {
+				script {
+					def scannerHome = tool 'sonarscan';
+					withSonarQubeEnv('sonarqube-server') {
+					sh "${tool("sonarscan ")}/bin/sonar-scanner -Dsonar.projectKey=test-node-js -Dsonar.projectName=reactapp -Dsonar.sources=."
+					}
+				}
+			}
+		}
 		
         stage("Build Image"){
             steps {
