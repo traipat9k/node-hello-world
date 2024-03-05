@@ -47,7 +47,7 @@ pipeline {
 					-Dsonar.projectName=test-nodejs \
 					-Dsonar.sources=. \
 					-Dsonar.sourceEncoding=UTF-8 \
-					-Dsonar.scm.disabled=true
+					-Dsonar.scm.disabled=true \
 					"
                 }
             }
