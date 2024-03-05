@@ -13,20 +13,33 @@ pipeline {
 	
     stages{
 		
-		/*
+		
         stage("Checkout from SCM"){
                 steps {
                     git branch: 'main', credentialsId: 'github', url: 'https://github.com/traipat9k/node-hello-world.git'
                 }
         }
-		*/
+		
+		stage("Build Application"){
+            steps {
+				sh 'node start'
+            }
+
+        }
+		
+		stage("Test Application"){
+            steps {
+				sh 'node test'
+            }
+
+        }
 		
         stage("Build Image"){
             steps {
 				sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
             }
 
-       }
+        }
 	   
         stage("Push Image"){
            steps {
