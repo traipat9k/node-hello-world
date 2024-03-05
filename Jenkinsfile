@@ -48,7 +48,7 @@ pipeline {
 					-Dsonar.sources=. \
 					-Dsonar.sourceEncoding=UTF-8 \
 					-Dsonar.scm.disabled=true \
-					-Dsonar.host.url=http://192.168.40.140:9000 "
+					"
                 }
             }
 		}
