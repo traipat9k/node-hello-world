@@ -42,7 +42,7 @@ pipeline {
             
             steps {
                 
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('sonarqube-scanner') {
                     sh "${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=test-nodejs \
 					-Dsonar.projectName=test-nodejs \
 					-Dsonar.sources=. \
