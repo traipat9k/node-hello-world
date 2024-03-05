@@ -22,14 +22,14 @@ pipeline {
 		
 		stage("Build Application"){
             steps {
-				sh 'node start'
+				sh 'npm start'
             }
 
         }
 		
 		stage("Test Application"){
             steps {
-				sh 'node test'
+				sh 'npm test'
             }
 
         }
