@@ -53,6 +53,15 @@ pipeline {
             }
 		}
 		
+		stage("Quality Gate"){
+            steps {
+               script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'jenkins-sonarqube-token'
+                }	
+            }
+
+        }
+		
         stage("Build Image"){
             steps {
 				sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
