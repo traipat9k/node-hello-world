@@ -1,6 +1,6 @@
 pipeline {
     agent { label 'Jenkins-Master' }
-	
+	tools { nodejs "nodejs"}
 	environment {
 			APP_NAME = "nodehello"
             RELEASE = "1.0.0"
