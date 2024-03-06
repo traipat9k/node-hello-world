@@ -30,7 +30,7 @@ pipeline {
 		
 		stage("Test Application"){
             steps {
-				sh 'echc test'
+				sh 'echo test'
            }
         }
 		
