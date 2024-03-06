@@ -27,14 +27,14 @@ pipeline {
 
         }
 		
-		//
-		//stage("Test Application"){
-        //    steps {
-		//		sh 'npm test'
-        //   }
-        //}
 		
-		stage("SonarQube analysis") {
+		stage("Test Application"){
+            steps {
+				sh 'echc test'
+           }
+        }
+		
+		stage("SonarQube Analysis") {
 
 			environment {
                 SCANNER_HOME = tool 'sonarqube-scanner';    
